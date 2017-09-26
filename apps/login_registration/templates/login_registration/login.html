@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'login_registration/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/sandstone/bootstrap.min.css">
+      <title>Login and Resttration</title>
+    </head>
+    <body>
+      <div>
+        <h3>Login</h3>
+        <hr>
+        <span class="help-block">
+          {% if messages %}
+            <ul class="messages">
+              {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </span>
+      </div>
+      <article>
+          <form class="form-horizontal" action='/check_login' method='POST'>
+              {% csrf_token %}
+              <fieldset>
+                  <div class="form-group">
+                      <div class="col-lg-10">
+                          <input class="form-control" name="email" type="email" placeholder="email">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-lg-10">
+                          <input class="form-control" name="passwd" type="password" placeholder="password">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="col-lg-10 col-lg-offset-2">
+                          <button type="reset" class="btn btn-default">Cancel</button>
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                      </div>
+                  </div>
+                  <a href="/">Go Back</a>
+              </fieldset>
+          </form>
+
+      </article>
+    </body>
+</html>

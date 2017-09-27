@@ -42,4 +42,8 @@ def check_register(request):
         request.session['name'] = User.objects.last().first_name
 
     return render(request, 'login_registration/result.html' )
-#
+
+def logout(request):
+    for key in request.session.keys():
+        del request.session[key]
+    return redirect('/')
